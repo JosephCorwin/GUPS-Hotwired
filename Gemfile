@@ -58,6 +58,9 @@ group :development, :test do
   # Enforce styles and conventions [https://rubocop.org/]
   gem 'rubocop'
   gem 'rubocop-rails'
+  
+  # Use Faker for dummy data
+  gem 'faker'
 end
 
 group :development do
