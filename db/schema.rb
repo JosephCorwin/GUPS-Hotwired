@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_30_031438) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_31_070119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cabs", force: :cascade do |t|
+    t.string "make"
+    t.string "model"
+    t.string "serial_no"
+    t.string "fleet_no"
+    t.string "frame_color"
+    t.string "carriage_color"
+    t.string "upholstry_color"
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_cabs_on_shop_id"
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string "name", null: false
@@ -26,4 +40,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_30_031438) do
     t.index ["domain"], name: "index_shops_on_domain"
   end
 
+  add_foreign_key "cabs", "shops"
 end
