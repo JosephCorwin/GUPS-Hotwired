@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Shop, type: :model do
-  let(:shop) { build(:shop) }
+  let(:shop) { build(:shop, :with_cabs) }
 
   subject { shop }
 
@@ -21,48 +21,42 @@ RSpec.describe Shop, type: :model do
   describe 'associations' do
     it {
       should have_many(:applicants)
-        .className('Applicant')
+        .class_name('Applicant')
         .dependant(:destroy)
     }
 
     it{
       should have_many(:cabs)
-        .className('Cab')
-    }
-
-    it {
-      should have_many(:campaigns)
-        .className('Campaign')
-        .dependant(:destroy)
+        .class_name('Cab')
     }
 
     it {
       should have_many(:contracts)
-        .className('Contract')
+        .class_name('Contract')
         .dependant(:restrict_with_exception)
     }
 
     it {
-      should have_many(:inventory_items)
-        .className('InventoryItem')
+      should have_many(:stocked_items)
+        .class_name('StockedItem')
         .dependant(:restrict_with_exception)
     }
 
     it { 
       should have_one(:logo)
-        .className('Image')
+        .class_name('Image')
         .dependant(:destroy)
     }
 
     it {
       should have_many(:pages)
-        .className(:Page)
+        .class_name('Page')
         .dependant(:destroy)
     }
 
     it {
       should have_many(:questions)
-        .className('Question')
+        .class_name('Question')
     }
   end
 end
